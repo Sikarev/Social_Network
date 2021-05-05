@@ -9,9 +9,9 @@ const MyPosts = () => {
             New posts
                 </div>
         <div className={classes.posts}>
-            <Post />
-            <Post />
-            <Post />
+            <Post message="Hi, how are you?" />
+            <Post message="This is my first post" />
+            <Post message="React is cool" />
         </div>
     </div>
 }
