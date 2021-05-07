@@ -1,0 +1,32 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+
+}
+
+.dialog {
+    margin: 10px 0;
+}
+
+.dialog:first-child{
+    margin-top: 0;
+}
+
+.active {
+    color: #785a46;
+}
+
+.messages {
+    
+}
+
+.message {
+    margin: 10px 0;
+}
+
+.message:first-child {
+    margin-top: 0;
+}
