@@ -15,7 +15,12 @@
     margin-top: 0;
 }
 
-.active {
+.dialog a{
+    color: #d24136;
+    text-decoration: none;
+}
+
+.dialog .active {
     color: #785a46;
 }
 

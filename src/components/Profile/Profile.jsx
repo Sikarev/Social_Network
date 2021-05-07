@@ -1,17 +1,15 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts'
 import classes from './Profile.module.css';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = () => {
-    return <div>
+    return (
         <div>
-            <img src='https://static-cse.canva.com/blob/185563/56.-Sunkissed-Village.f8ebc04e.png' />
+            <ProfileInfo />
+            <MyPosts />
         </div>
-        <div>
-            avatar + description
-        </div>
-        <MyPosts />
-    </div>
+    )
 }
 
 export default Profile;
