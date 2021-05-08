@@ -26,8 +26,26 @@
 
 .message {
     margin: 10px 0;
+
 }
 
 .message:first-child {
     margin-top: 0;
+}
+
+.message:nth-child(even) {
+    text-align: right;
+    padding: 10px 0;
+}
+
+.message span {
+    background-color: #4d6da9;
+    color: #fff;
+    border-radius: 20px;
+    line-height: 20px;
+    padding: 10px;
+}
+
+.message:nth-child(even) span {
+    background-color: rgb(92, 156, 240);
 }

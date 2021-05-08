@@ -6,8 +6,10 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
-import Music from './components/Music/Music';
+import Music from './components/Friends/Friends';
 import Settings from './components/Settings/Settings';
+import Friends from './components/Friends/Friends';
+import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -24,6 +26,10 @@ const App = (props) => {
           <Route path='/news' render={ () => <News/>}/>
           <Route path='/music' render={ () => <Music/>}/>
           <Route path='/settings' render={ () => <Settings/>}/>
+          <Route path='/friends' render={ () => <Friends/>} />
+          <Route path='/friend1' render={ () => <Friend id="1"/>} />
+          <Route path='/friend2' render={ () => <Friend id="2"/>} />
+          <Route path='/friend3' render={ () => <Friend id="3"/>} />
         </div>
       </div>
     </BrowserRouter>
