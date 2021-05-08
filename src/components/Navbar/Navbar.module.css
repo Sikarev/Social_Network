@@ -1,22 +1,22 @@
 .nav {
     grid-area: n;
-    background-color: #eb8a3e;
-    padding: 15px;
+    background-color: #ebedf4;
+    margin: 15px;
 }
 
 .item {
-    margin: 10px 0;
+    padding: 10px 0 0 10px;
 }
 
-.item:first-child {
-    margin-top: 0;
+.nav :last-child {
+    padding-bottom: 10px;
 }
 
 .item a {
-    color: #fff;
+    color: rgb(92, 156, 240);
     text-decoration: none;
 }
 
 .item a.activeLink {
-    color: #785a46;
+    color: rgb(0, 110, 255);
 }

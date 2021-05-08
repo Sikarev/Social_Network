@@ -5,7 +5,7 @@ const ProfileInfo = () => {
     return (
         <div>
             <div>
-                <img src='https://static-cse.canva.com/blob/185563/56.-Sunkissed-Village.f8ebc04e.png' />
+                <img src='https://icenetblog.files.wordpress.com/2020/06/header-image.jpg?w=1024' />
             </div>
             <div className={s.descriptionBlock}>
                 avatar + description

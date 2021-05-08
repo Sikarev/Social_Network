@@ -11,21 +11,17 @@
     margin: 10px 0;
 }
 
-.dialog:first-child{
-    margin-top: 0;
-}
-
 .dialog a{
-    color: #d24136;
+    color: rgb(92, 156, 240);
     text-decoration: none;
 }
 
 .dialog .active {
-    color: #785a46;
+    color: rgb(0, 110, 255);
 }
 
 .messages {
-    
+    padding: 10px;
 }
 
 .message {
