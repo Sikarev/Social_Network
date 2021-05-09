@@ -1,4 +1,6 @@
-import { renderEntireTree } from "../render";
+let renderEntireTree = () => {
+  console.log("State was changed");
+}
 
 let state = {
     dialogsPage: {
@@ -31,7 +33,7 @@ let state = {
 
 window.state = state;
 
-export let addPost = (postMessage) => {
+export const addPost = (postMessage) => {
   let newPost = {
     id: 4,
     message: postMessage,
@@ -44,9 +46,13 @@ export let addPost = (postMessage) => {
   renderEntireTree(state);
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   renderEntireTree(state);
 }
+
+export const subscribe = (observer) => {
+  renderEntireTree = observer;// переопределяем функцию, находящуюся в глобальной области
+} // эта функция является паттерном observer (наблюдатель)
 
 export default state;
