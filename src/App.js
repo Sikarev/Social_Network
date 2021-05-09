@@ -14,14 +14,14 @@ import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 const App = (props) => {
-
+  
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={ () => <Profile postsData={props.state.profilePage.postsData}/>}/>
+          <Route path='/profile' render={ () => <Profile postsData={props.state.profilePage.postsData} addPost={props.addPost}/>}/>
           <Route path='/dialogs' render={ () => <Dialogs dialogsData={props.state.dialogsPage.dialogsData} messagesData={props.state.dialogsPage.messagesData}/>}/>
           <Route path='/news' render={ () => <News/>}/>
           <Route path='/music' render={ () => <Music/>}/>
