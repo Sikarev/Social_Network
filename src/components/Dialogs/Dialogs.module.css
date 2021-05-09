@@ -49,3 +49,11 @@
 .message:nth-child(even) span {
     background-color: rgb(92, 156, 240);
 }
+
+.writingBlock {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin: 40px auto;
+}
