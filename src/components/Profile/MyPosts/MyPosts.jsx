@@ -5,14 +5,18 @@ import Button from '../../SeparateElements/Button/Button';
 import Textarea from '../../SeparateElements/Textarea/Textarea';
 
 const MyPosts = (props) => {
-    let postsElements = props.data.map(p => <Post message={p.message} likesCount={p.likesCount} picture={p.picture} />);
+    let postsElements = props.data.postsData.map(p => <Post message={p.message} likesCount={p.likesCount} picture={p.picture} />);
 
     let newPostElement = React.createRef();
 
     let addPost = () => {
+        props.addPost(props.data.newPostText);
+        props.updateNewPostText("");
+    }
+
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = '';
+        props.updateNewPostText(text);
     }
 
     return (
@@ -20,7 +24,7 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <Textarea ref={newPostElement} />
+                    <Textarea ref={newPostElement} onChange={onPostChange} value={props.data.newPostText} />
                 </div>
                 <Button text="Add post" onClick={addPost} />
             </div>
