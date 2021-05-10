@@ -14,7 +14,9 @@ let store = {
             { id: 1, message: "Hi" },
             { id: 2, message: "How your doing?" },
             { id: 3, message: "Let's go for a walk" }
-          ]
+          ],
+
+          newMessageText: ""
     },
     
     profilePage: {
@@ -38,28 +40,11 @@ let store = {
     this._callSubscriber = observer;// переопределяем функцию, находящуюся в глобальной области
   }, // эта функция является паттерном observer (наблюдатель)
 
-  // addPost (postMessage) {
-  //   let newPost = {
-  //     id: 4,
-  //     message: postMessage,
-  //     likesCount: 0,
-  //     picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
-  //   };
-  
-  //   this._state.profilePage.postsData.push(newPost);
-  //   this.updateNewPostText("");
-  //   this._callSubscriber(this._state);
-  // },
-  // updateNewPostText (newText) {
-  //   this._state.profilePage.newPostText = newText;
-  //   this._callSubscriber(this._state);
-  // },
-
   dispatch (action) {
-    if (action.type === "ADD-POST") {
+    if (action.type === ADD_POST) {
       let newPost = {
         id: 4,
-        message: action.postMessage,
+        message: this._state.profilePage.newPostText,
         likesCount: 0,
         picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
       };
@@ -68,8 +53,22 @@ let store = {
       this._state.profilePage.newPostText = '';
       this._callSubscriber(this._state);
     }
-    else if (action.type === "UPDATE-NEW-POST-TEXT") {
+    else if (action.type === SEND_MESSAGE){
+      let newMessage = {
+        id: 1,
+        message: this._state.dialogsPage.newMessageText
+      }
+
+      this._state.dialogsPage.messagesData.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._callSubscriber(this._state);
+    }
+    else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    }
+    else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+      this._state.dialogsPage.newMessageText = action.newText;
       this._callSubscriber(this._state);
     }
     else {
@@ -78,28 +77,16 @@ let store = {
   }
 }
 
+const ADD_POST = "ADD-POST";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
+export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
+
 window.store = store;
-
-// export const addPost = (postMessage) => {
-//   let newPost = {
-//     id: 4,
-//     message: postMessage,
-//     likesCount: 0,
-//     picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
-//   };
-
-//   state.profilePage.postsData.push(newPost);
-//   updateNewPostText("");
-//   renderEntireTree(state);
-// }
-
-// export const updateNewPostText = (newText) => {
-//   state.profilePage.newPostText = newText;
-//   renderEntireTree(state);
-// }
-
-// export const subscribe = (observer) => {
-//   renderEntireTree = observer;// переопределяем функцию, находящуюся в глобальной области
-// } // эта функция является паттерном observer (наблюдатель)
 
 export default store;
