@@ -27,7 +27,6 @@ let store = {
           newPostText:"lorem ipsum"
     }
   },
-
   _callSubscriber() {
     console.log("State was changed");
   },
@@ -35,28 +34,48 @@ let store = {
   getState() {
     return this._state;
   },
-
-  addPost (postMessage) {
-    let newPost = {
-      id: 4,
-      message: postMessage,
-      likesCount: 0,
-      picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
-    };
-  
-    this._state.profilePage.postsData.push(newPost);
-    this.updateNewPostText("");
-    this._callSubscriber(this._state);
-  },
-  
-  updateNewPostText (newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-  
   subscribe (observer) {
     this._callSubscriber = observer;// переопределяем функцию, находящуюся в глобальной области
-  } // эта функция является паттерном observer (наблюдатель)
+  }, // эта функция является паттерном observer (наблюдатель)
+
+  // addPost (postMessage) {
+  //   let newPost = {
+  //     id: 4,
+  //     message: postMessage,
+  //     likesCount: 0,
+  //     picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
+  //   };
+  
+  //   this._state.profilePage.postsData.push(newPost);
+  //   this.updateNewPostText("");
+  //   this._callSubscriber(this._state);
+  // },
+  // updateNewPostText (newText) {
+  //   this._state.profilePage.newPostText = newText;
+  //   this._callSubscriber(this._state);
+  // },
+
+  dispatch (action) {
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 4,
+        message: action.postMessage,
+        likesCount: 0,
+        picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
+      };
+    
+      this._state.profilePage.postsData.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
+    }
+    else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    }
+    else {
+      console.log("Wrong typename");
+    }
+  }
 }
 
 window.store = store;
