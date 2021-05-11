@@ -1,3 +1,7 @@
+import dialogsReducer from "./reducer/dialogsReducer";
+import profileReducer from "./reducer/profileReducer";
+import sidebarReducer from "./reducer/sidebarReducer";
+
 let store = {
   _state: {
     dialogsPage: {
@@ -27,7 +31,9 @@ let store = {
           ],
 
           newPostText:"lorem ipsum"
-    }
+    },
+
+    sidebar: {}
   },
   _callSubscriber() {
     console.log("State was changed");
@@ -41,51 +47,13 @@ let store = {
   }, // эта функция является паттерном observer (наблюдатель)
 
   dispatch (action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 4,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-        picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
-      };
-    
-      this._state.profilePage.postsData.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === SEND_MESSAGE){
-      let newMessage = {
-        id: 1,
-        message: this._state.dialogsPage.newMessageText
-      }
+    profileReducer(this._state.profilePage, action);
+    dialogsReducer(this._state.dialogsPage, action);
+    sidebarReducer(this._state.sidebar, action);
 
-      this._state.dialogsPage.messagesData.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.newMessageText = action.newText;
-      this._callSubscriber(this._state);
-    }
-    else {
-      console.log("Wrong typename");
-    }
+    this._callSubscriber(this._state);
   }
 }
-
-const ADD_POST = "ADD-POST";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text});
 
 window.store = store;
 

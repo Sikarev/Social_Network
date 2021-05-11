@@ -3,7 +3,7 @@ import Post from './Post/Post';
 import s from './MyPosts.module.css';
 import Button from '../../SeparateElements/Button/Button';
 import Textarea from '../../SeparateElements/Textarea/Textarea';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/reducer/profileReducer';
 
 const MyPosts = (props) => {
     let postsElements = props.data.postsData.map(p => <Post message={p.message} likesCount={p.likesCount} picture={p.picture} />);
