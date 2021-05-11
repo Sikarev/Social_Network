@@ -4,7 +4,6 @@ import './zero.css';
 import Profile from './components/Profile/Profile';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Friends/Friends';
 import Settings from './components/Settings/Settings';
@@ -12,6 +11,7 @@ import Friends from './components/Friends/Friends';
 import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import DialogsContainer from './components/Dialogs/DialogsComponents';
 
 const App = (props) => {
   return (
@@ -20,8 +20,8 @@ const App = (props) => {
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={ () => <Profile data={props.state.profilePage} dispatch={props.dispatch}/>}/>
-          <Route path='/dialogs' render={ () => <Dialogs data={props.state.dialogsPage} dispatch={props.dispatch}/>}/>
+          <Route path='/profile' render={ () => <Profile store={props.store}/>}/>
+          <Route path='/dialogs' render={ () => <DialogsContainer store={props.store}/>}/>
           <Route path='/news' render={ () => <News/>}/>
           <Route path='/music' render={ () => <Music/>}/>
           <Route path='/settings' render={ () => <Settings/>}/>
