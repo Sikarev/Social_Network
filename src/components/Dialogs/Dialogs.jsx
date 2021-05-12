@@ -4,7 +4,6 @@ import Message from './Message/Message';
 import s from './Dialogs.module.css';
 import Button from '../SeparateElements/Button/Button';
 import Textarea from '../SeparateElements/Textarea/Textarea';
-import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/reducer/dialogsReducer';
 
 const Dialogs = (props) => {
     let dialogElements = props.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
