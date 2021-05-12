@@ -19,12 +19,19 @@ const profileReducer = (profileState = state, action) => {
           likesCount: 0,
           picture: "http://sun9-36.userapi.com/s/v1/if1/_BF97CTzOHd98gIKmCzOgpm9y4LWSU9J5k2_OGI1T7sUdEyfFeoGWGWJgpW3N8TBL8V50Q.jpg?size=200x0&quality=96&crop=0,0,200,290&ava=1"
         };
-      
-        profileState.postsData.push(newPost);
-        profileState.newPostText = '';
+        
+        let stateCopy = {...profileState};
+        stateCopy.postsData = [...profileState.postsData];
+
+        stateCopy.postsData.push(newPost);
+        stateCopy.newPostText = '';
+        return stateCopy;
 }
     else if (action.type === UPDATE_NEW_POST_TEXT) {
-      profileState.newPostText = action.newText;
+      let stateCopy = {...profileState};
+
+      stateCopy.newPostText = action.newText;
+      return stateCopy;
     }
 
     return profileState;
