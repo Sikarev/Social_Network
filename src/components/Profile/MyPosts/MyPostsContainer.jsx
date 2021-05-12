@@ -24,7 +24,8 @@ const MyPostsContainer = (props) => {
                         addPost={addPost}
                         postsData={state.profilePage.postsData}
                         newPostText={state.profilePage.newPostText} />
-                }}
+                }
+            }
         </StoreContext.Consumer>
     )
 }
