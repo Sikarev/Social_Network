@@ -12,7 +12,6 @@ import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import StoreContext from './StoreContext';
 
 const App = (props) => {
   return (
