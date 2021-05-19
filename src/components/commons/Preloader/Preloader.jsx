@@ -1,10 +1,11 @@
 import React from 'react';
 import preloader from '../../../assets/Pulse-1s-200px.svg';
+import styles from './Preloader.module.css';
 
-let Prealoader = () => {
+let Preloader = () => {
     return (
-        <img src={preloader} />
+        <img className={styles.preloader} src={preloader} />
     )
 }
 
-export default Prealoader;
+export default Preloader;

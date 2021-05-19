@@ -1,11 +1,18 @@
 import React from 'react';
+import Preloader from '../../commons/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+
+const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return (
+            <Preloader />
+        )
+    }
     return (
         <div>
             <div>
-                <img src='https://icenetblog.files.wordpress.com/2020/06/header-image.jpg?w=1024' />
+                <img src={props.profile.photos.large} />
             </div>
             <div className={s.descriptionBlock}>
                 avatar + description
