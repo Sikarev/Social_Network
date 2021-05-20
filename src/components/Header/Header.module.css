@@ -2,6 +2,8 @@
     grid-area: h;
     background-color: #4d6da9;
     padding: 15px;
+    display: flex;
+    justify-content: space-between;
 }
 .header img {
     width: 60px;
@@ -13,4 +15,14 @@
     text-transform: uppercase;
     font-size: 48px;
     font-weight: 700;
+}
+
+
+.loginBlock {
+    float: right;
+    background-color: rgb(92, 156, 240);
+    padding: 10px;
+    color: #fff;
+    border-radius: 20px;
+    align-self: center;
 }
