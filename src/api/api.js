@@ -8,12 +8,21 @@ const instance = axios.create({
     }
 });
 
-export const getUsers = (currentPage = 1, pageSize = 5) => {
-    return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-    .then(response => {
-        return response.data;
-    })
+export const usersAPI = {
+    getUsers(currentPage = 1, pageSize = 5) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        .then(response => {
+            return response.data;
+        })
+    },
 }
+
+// export const getUsers = (currentPage = 1, pageSize = 5) => {
+//     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+//     .then(response => {
+//         return response.data;
+//     })
+// }
 
 export const auth = () => {
     return instance.get(`auth/me`)
