@@ -2,6 +2,10 @@
     width: 100px;
 }
 
+.pageNumbers span {
+    margin-left: 5px;
+}
+
 .selectedPage {
     font-weight: bold;
 }
