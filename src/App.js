@@ -13,6 +13,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersСontainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 const App = (props) => {
   return (
@@ -31,6 +32,7 @@ const App = (props) => {
             <Route path='/friend1' render={ () => <Friend id="1"/>} />
             <Route path='/friend2' render={ () => <Friend id="2"/>} />
             <Route path='/friend3' render={ () => <Friend id="3"/>} />
+            <Route path='/login' render={ () => <Login/>} />
           </div>
         </div>
     </BrowserRouter>
