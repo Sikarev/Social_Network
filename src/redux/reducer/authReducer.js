@@ -1,4 +1,4 @@
-import { auth } from "../../api/api";
+import { authAPI } from "../../api/api";
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -27,7 +27,7 @@ export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, 
 
 export const authThunk = () => {
     return (dispatch) => {
-        auth().then(data => {
+        authAPI.me().then(data => {
             if (data.resultCode === 0) {//если успешно залогинились
                 let { id, email, login } = data.data;
                 dispatch(setAuthUserData(id, email, login));//здесь первая data - стандарт axios, а вторая отностся к серверу (так её назвал разработчик)

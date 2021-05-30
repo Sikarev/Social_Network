@@ -1,5 +1,4 @@
 import axios from "axios";
-import { unfollow } from "../redux/reducer/usersReducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -12,6 +11,13 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 5) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        .then(response => {
+            return response.data;
+        })
+    },
+
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
         .then(response => {
             return response.data;
         })
@@ -32,16 +38,11 @@ export const usersAPI = {
 //     })
 // }
 
-export const auth = () => {
-    return instance.get(`auth/me`)
-    .then(response => {
-        return response.data;
-    })
-}
-
-export const getUserId = (userId) => {
-    return instance.get(`profile/${userId}`)
-    .then(response => {
-        return response.data;
-    })
+export const authAPI = {
+    me() {
+            return instance.get(`auth/me`)
+        .then(response => {
+            return response.data;
+        })
+    }
 }
