@@ -22,3 +22,15 @@ body {
   grid-area: c;
   background-color: #fff;
 }
+
+textarea {
+  border: 1px solid black;
+  margin-right: 20px;
+}
+
+button {
+  background-color: rgb(92, 156, 240);
+  color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+}

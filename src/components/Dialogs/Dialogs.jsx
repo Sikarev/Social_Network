@@ -2,24 +2,36 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
-import Button from '../SeparateElements/Button/Button';
-import Textarea from '../SeparateElements/Textarea/Textarea';
-import { Redirect } from 'react-router';
+import { Field, reduxForm } from 'redux-form';
+
+const MessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={s.writingBlock}>
+            <Field placeholder={"Type here"} name={"message"} component={"textarea"} />
+            <button>Send</button>
+        </form>
+    )
+}
+
+const MessageReduxForm = reduxForm({ form: 'sendMessage' })(MessageForm);
 
 const Dialogs = (props) => {
+    const onSubmit = (formData) => {
+        props.sendMessage(formData.message);
+    }
     let dialogElements = props.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
     let messagesElements = props.messagesData.map(msg => <Message message={msg.message} id={msg.id} />);
 
-    let newMessage = React.createRef();
+    // let newMessage = React.createRef();
 
-    let onMessageChange = () => {
-        let text = newMessage.current.value;
-        props.updateNewMessageText(text);
-    }
+    // let onMessageChange = () => {
+    //     let text = newMessage.current.value;
+    //     props.updateNewMessageText(text);
+    // }
 
-    let sendMessage = () => {
-        props.sendMessage();
-    }
+    // let sendMessage = () => {
+    //     props.sendMessage();
+    // }
 
     return (
         <div className={s.dialogs}>
@@ -28,10 +40,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <div className={s.writingBlock}>
-                    <Textarea ref={newMessage} onChange={onMessageChange} rows="2" cols="50" value={props.newMessageText} />
-                    <Button text="Send" onClick={sendMessage} />
-                </div>
+                <MessageReduxForm onSubmit={onSubmit} />
             </div>
         </div>
     )
