@@ -3,11 +3,13 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
 import { Field, reduxForm } from 'redux-form';
+import { Textarea } from '../commons/FromControls/FormControls';
+import { requiredField } from '../../utilities/validators/validator';
 
 const MessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.writingBlock}>
-            <Field placeholder={"Type here"} name={"message"} component={"textarea"} />
+            <Field placeholder={"Type here"} name={"message"} component={Textarea} validate={[requiredField]} />
             <button>Send</button>
         </form>
     )
