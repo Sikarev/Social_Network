@@ -17,6 +17,11 @@
     font-weight: 700;
 }
 
+.loginMenu {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
 
 .loginBlock {
     float: right;
@@ -25,4 +30,7 @@
     color: #fff;
     border-radius: 20px;
     align-self: center;
+    border: none;
+    margin-right: 10px;
+    font-size: 16px;
 }

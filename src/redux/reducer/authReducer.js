@@ -15,22 +15,41 @@ const authReducer = (authState = state, action) => {
         case SET_USER_DATA:
            return {
                ...state,
-               ...action.data,// деструктуризируем action и получаем
-                isAuth: true
+               ...action.data
             }
         default:
             return authState;
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
+export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, data: {userId, email, login, isAuth}});
 
-export const authThunk = () => {
+export const getAuthUsersData = () => {
     return (dispatch) => {
-        authAPI.me().then(data => {
-            if (data.resultCode === 0) {//если успешно залогинились
-                let { id, email, login } = data.data;
-                dispatch(setAuthUserData(id, email, login));//здесь первая data - стандарт axios, а вторая отностся к серверу (так её назвал разработчик)
+        authAPI.me().then(response => {
+            if (response.resultCode === 0) {//если успешно залогинились
+                let { id, email, login } = response.data;
+                dispatch(setAuthUserData(id, email, login, true));//здесь первая data - стандарт axios, а вторая отностся к серверу (так её назвал разработчик)
+            }
+        });
+    }
+}
+
+export const login = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUsersData());
+            }
+        });
+    }
+}
+
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout().then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
             }
         });
     }
