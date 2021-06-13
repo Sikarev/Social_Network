@@ -1,3 +1,5 @@
-input {
-    margin: 5px 0 5px 0;
+.formError {
+    padding: 5px;
+    height: 20px;
+    color: red;
 }

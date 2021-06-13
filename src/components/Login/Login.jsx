@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Login.module.css';
 import { Field, reduxForm } from 'redux-form';
 import { requiredField } from '../../utilities/validators/validator';
 import { Input } from '../commons/FromControls/FormControls';
@@ -18,6 +19,7 @@ const LoginForm = (props) => {
             <div>
                 <label><Field type={"checkbox"} name={"rememberMe"} value={"Remember me"} component={"input"} />Remember me</label>
             </div>
+            <div className={styles.formError}>{props.error}</div>
             <button>Login</button>
         </form>
     )

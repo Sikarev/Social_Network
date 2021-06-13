@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/reduxStore';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 // import {addPost, updateNewPostText} from './redux/state';
 
 let renderEntireTree = (store) => {
     ReactDOM.render(
+      <BrowserRouter>
         <Provider store={store}>
-          <App />
-        </Provider>,
+            <App />
+        </Provider>
+      </BrowserRouter>,
       document.getElementById('root')
     );
   }

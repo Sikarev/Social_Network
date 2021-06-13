@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { authAPI } from "../../api/api";
 
 const SET_USER_DATA = 'SET-USER-DATA';
@@ -26,7 +27,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USE
 
 export const getAuthUsersData = () => {
     return (dispatch) => {
-        authAPI.me().then(response => {
+        return authAPI.me().then(response => {
             if (response.resultCode === 0) {//если успешно залогинились
                 let { id, email, login } = response.data;
                 dispatch(setAuthUserData(id, email, login, true));//здесь первая data - стандарт axios, а вторая отностся к серверу (так её назвал разработчик)
@@ -40,6 +41,9 @@ export const login = (email, password, rememberMe) => {
         authAPI.login(email, password, rememberMe).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUsersData());
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "";
+                dispatch(stopSubmit("login", {_error: message}));
             }
         });
     }
