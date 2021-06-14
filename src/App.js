@@ -18,6 +18,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/reducer/appReducer'
 import Preloader from './components/commons/Preloader/Preloader';
+// import store from './redux/reduxStore';
+
+// setInterval(() => {store.dispatch({type: "FAKE"})}, 1000);
 
 class App extends React.Component {
   componentDidMount() {

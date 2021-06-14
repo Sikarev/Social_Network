@@ -18,6 +18,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+        console.log("RENDER")
         return <>
             {this.props.isFetching ? <Prealoader /> :
                 <Users
@@ -35,6 +36,7 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    console.log("MSTP");
     return {
         users: usersSelector(state),
         pageSize: pageSizeSelector(state),
