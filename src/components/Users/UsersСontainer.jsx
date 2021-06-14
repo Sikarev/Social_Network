@@ -4,6 +4,7 @@ import { follow, unfollow, getUsers } from '../../redux/reducer/usersReducer';
 import Users from './Users';
 import Prealoader from '../commons/Preloader/Preloader';
 import { compose } from 'redux';
+import { currentPageSelector, followingInProgressSelector, isFetchingSelector, pageSizeSelector, totalUsersCountSelector, usersSelector } from '../../redux/selectors/usersSelector';
 
 
 class UsersContainer extends React.Component {
@@ -35,12 +36,12 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: usersSelector(state),
+        pageSize: pageSizeSelector(state),
+        totalUsersCount: totalUsersCountSelector(state),
+        currentPage: currentPageSelector(state),
+        isFetching: isFetchingSelector(state),
+        followingInProgress: followingInProgressSelector(state)
     }
 }
 

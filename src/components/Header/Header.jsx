@@ -5,7 +5,7 @@ import classes from './Header.module.css';
 const Header = (props) => {
     return (
         <header className={classes.header}>
-            <div className={classes.logo}>Hire me pls</div>
+            <div className={classes.logo}>Social Network</div>
             <div className={classes.loginMenu}>
                 <NavLink to='/login' className={classes.loginBlock}>
                     <div>
