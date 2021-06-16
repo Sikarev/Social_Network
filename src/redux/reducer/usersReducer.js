@@ -14,16 +14,11 @@ let state = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: [],
-  fake: 1
+  followingInProgress: []
 }
 
 const usersReducer = (usersState = state, action) => {
     switch (action.type) {
-        case "FAKE":
-            return {
-                ...usersState, fake: usersState.fake + 1
-            }
         case FOLLOW:
             return {
                 ...usersState,
