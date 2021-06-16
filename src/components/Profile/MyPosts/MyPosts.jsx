@@ -8,6 +8,7 @@ import { Textarea } from '../../commons/FromControls/FormControls';
 const maxLength10 = maxLengthCreator(10);
 
 const PostForm = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -20,8 +21,9 @@ const PostForm = (props) => {
 
 const PostReduxForm = reduxForm({ form: 'addPost' })(PostForm);
 
-const MyPosts = (props) => {
-    let postsElements = props.postsData.map(p => <Post message={p.message} likesCount={p.likesCount} picture={p.picture} />);
+const MyPosts = React.memo((props) => {
+
+    let postsElements = props.postsData.map(p => <Post message={p.message} likesCount={p.likesCount} picture={p.picture} />).reverse();
 
     const addPost = (formData) => {
         props.addPost(formData.newPostText);
@@ -38,6 +40,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;
