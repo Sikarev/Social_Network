@@ -1,12 +1,13 @@
 import { usersAPI } from "../../api/api";
+import { updateObjectInArray } from "../../utilities/objectHelpers";
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET-USERS";
-const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
-const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
-const TOGGLE_IS_FOLLOWING_IN_PROGRESS = "TOGGLE_IS_FOLLOWING_IN_PROGRESS";
+const FOLLOW = "users/FOLLOW";
+const UNFOLLOW = "users/UNFOLLOW";
+const SET_USERS = "users/SET-USERS";
+const SET_CURRENT_PAGE = "users/SET-CURRENT-PAGE";
+const SET_TOTAL_USERS_COUNT = "users/SET-TOTAL-USERS-COUNT";
+const TOGGLE_IS_FETCHING = "users/TOGGLE-IS-FETCHING";
+const TOGGLE_IS_FOLLOWING_IN_PROGRESS = "users/TOGGLE_IS_FOLLOWING_IN_PROGRESS";
 
 let state = {
   users: [],
@@ -22,30 +23,12 @@ const usersReducer = (usersState = state, action) => {
         case FOLLOW:
             return {
                 ...usersState,
-                //users: [...state.users],
-                users: usersState.users.map( u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true};
-                        //Согласно принципу immutable functions,
-                        //мы не имеем права изменять объект внутри чистой функции. 
-                        //Поэтому нам нужно создать его копию и вернуть именно её
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(usersState.users, action.userId, "id", {followed: true})
             };
         case UNFOLLOW:
             return {
                 ...usersState,
-                //users: [...state.users],
-                users: usersState.users.map( u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false};
-                        //Согласно принципу immutable functions,
-                        //мы не имеем права изменять объект внутри чистой функции. 
-                        //Поэтому нам нужно создать его копию и вернуть именно её
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(usersState.users, action.userId, "id", {followed: false})
             };
         case SET_USERS:
             return {...usersState, users: [...action.users]};
@@ -82,40 +65,38 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_
 
 //всё что ниже - thunk
 export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        let data = await usersAPI.getUsers(currentPage, pageSize);
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
-            dispatch(setCurrentPage(currentPage))
-        });
+            dispatch(setCurrentPage(currentPage));
     }
 }
 
-export const follow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId));
-        usersAPI.follow(userId)
-            .then(response => {
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleFollowingInProgress(true, userId));
+        let response = await apiMethod(userId)
                 if (response.data.resultCode === 0) { 
-                    dispatch(followSuccess(userId)); 
+                    dispatch(actionCreator(userId)); 
                 };
                 dispatch(toggleFollowingInProgress(false, userId));
-            });
+}
+
+export const follow = (userId) => {
+    return async (dispatch) => {
+        // let apiMethod = usersAPI.follow.bind(usersAPI);
+        // let actionCreator = followSuccess;
+        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleFollowingInProgress(true, userId));
-        usersAPI.unfollow(userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(unfollowSuccess(userId));
-                };
-                dispatch(toggleFollowingInProgress(false, userId));
-            });
+    return async (dispatch) => {
+        // let apiMethod = usersAPI.unfollow.bind(usersAPI);
+        // let actionCreator = unfollowSuccess;
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
     }
 }
 
