@@ -8,16 +8,17 @@ import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
-import { withRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersСontainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/reducer/appReducer'
 import Preloader from './components/commons/Preloader/Preloader';
+import store from './redux/reduxStore';
 // import store from './redux/reduxStore';
 
 // setInterval(() => {store.dispatch({type: "FAKE"})}, 1000);
@@ -57,6 +58,18 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose(
+const AppContainer = compose(
   withRouter,
   connect(mapStateToProps, { initializeApp }))(App);
+
+const MainApp = (props) => {
+  return (
+  <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
+  </BrowserRouter>
+  )
+}
+
+export default MainApp;

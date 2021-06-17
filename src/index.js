@@ -1,20 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/reduxStore';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-// import {addPost, updateNewPostText} from './redux/state';
+import MainApp from './App';
 
 let renderEntireTree = (store) => {
     ReactDOM.render(
-      <BrowserRouter>
-        <Provider store={store}>
-            <App />
-        </Provider>
-      </BrowserRouter>,
+      <MainApp/>,
       document.getElementById('root')
     );
   }

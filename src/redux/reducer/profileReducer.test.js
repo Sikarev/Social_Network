@@ -10,8 +10,11 @@ let state = {
 }
 
 it('post added successfuly', () => {
+    // 1 test data
     let action = addPost("new one");
+    // 2 action
     let newState = profileReducer(state, action)
+    // 3 expectations
     expect(newState.postsData.length).toBe(4)
 })
 
