@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/Socila_Network/static/css/main.7b24edd0.chunk.css",
+    "main.js": "/Socila_Network/static/js/main.7a6b5853.chunk.js",
+    "main.js.map": "/Socila_Network/static/js/main.7a6b5853.chunk.js.map",
+    "runtime-main.js": "/Socila_Network/static/js/runtime-main.37267457.js",
+    "runtime-main.js.map": "/Socila_Network/static/js/runtime-main.37267457.js.map",
+    "static/js/2.f9725d72.chunk.js": "/Socila_Network/static/js/2.f9725d72.chunk.js",
+    "static/js/2.f9725d72.chunk.js.map": "/Socila_Network/static/js/2.f9725d72.chunk.js.map",
+    "static/css/3.e098f30c.chunk.css": "/Socila_Network/static/css/3.e098f30c.chunk.css",
+    "static/js/3.57282c5d.chunk.js": "/Socila_Network/static/js/3.57282c5d.chunk.js",
+    "static/js/3.57282c5d.chunk.js.map": "/Socila_Network/static/js/3.57282c5d.chunk.js.map",
+    "static/css/4.fd78dc78.chunk.css": "/Socila_Network/static/css/4.fd78dc78.chunk.css",
+    "static/js/4.1312323f.chunk.js": "/Socila_Network/static/js/4.1312323f.chunk.js",
+    "static/js/4.1312323f.chunk.js.map": "/Socila_Network/static/js/4.1312323f.chunk.js.map",
+    "static/css/5.89962e76.chunk.css": "/Socila_Network/static/css/5.89962e76.chunk.css",
+    "static/js/5.df8746ce.chunk.js": "/Socila_Network/static/js/5.df8746ce.chunk.js",
+    "static/js/5.df8746ce.chunk.js.map": "/Socila_Network/static/js/5.df8746ce.chunk.js.map",
+    "static/js/6.3b1dde98.chunk.js": "/Socila_Network/static/js/6.3b1dde98.chunk.js",
+    "static/js/6.3b1dde98.chunk.js.map": "/Socila_Network/static/js/6.3b1dde98.chunk.js.map",
+    "index.html": "/Socila_Network/index.html",
+    "static/css/3.e098f30c.chunk.css.map": "/Socila_Network/static/css/3.e098f30c.chunk.css.map",
+    "static/css/4.fd78dc78.chunk.css.map": "/Socila_Network/static/css/4.fd78dc78.chunk.css.map",
+    "static/css/5.89962e76.chunk.css.map": "/Socila_Network/static/css/5.89962e76.chunk.css.map",
+    "static/css/main.7b24edd0.chunk.css.map": "/Socila_Network/static/css/main.7b24edd0.chunk.css.map",
+    "static/js/2.f9725d72.chunk.js.LICENSE.txt": "/Socila_Network/static/js/2.f9725d72.chunk.js.LICENSE.txt",
+    "static/media/Pulse-1s-200px.74d5ec9e.svg": "/Socila_Network/static/media/Pulse-1s-200px.74d5ec9e.svg",
+    "static/media/userImg.png": "/Socila_Network/static/media/userImg.cdbf4be5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.37267457.js",
+    "static/js/2.f9725d72.chunk.js",
+    "static/css/main.7b24edd0.chunk.css",
+    "static/js/main.7a6b5853.chunk.js"
+  ]
+}
