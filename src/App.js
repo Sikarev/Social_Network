@@ -8,7 +8,7 @@ import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
-import { BrowserRouter, withRouter } from 'react-router-dom';
+import { HashRouter, withRouter } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
@@ -68,11 +68,11 @@ const AppContainer = compose(
 
 const MainApp = (props) => {
   return (
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <HashRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer />
         </Provider>
-  </BrowserRouter>
+  </HashRouter>
   )
 }
 
