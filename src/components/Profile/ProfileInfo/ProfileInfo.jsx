@@ -10,11 +10,19 @@ const ProfileInfo = (props) => {
             <Preloader />
         )
     }
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+
     return (
         <div>
             <div>
-                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} />
+                <img src={props.profile.photos.large || userPhoto} className={s.avatar} />
             </div>
+            {props.isOwner && <input type="file" onChange={onMainPhotoSelected} />}
             <div className={s.descriptionBlock}>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
             </div>
