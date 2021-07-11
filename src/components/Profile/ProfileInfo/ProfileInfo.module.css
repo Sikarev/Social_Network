@@ -5,3 +5,11 @@
 .avatar {
     max-width: 400px;
 }
+
+.statusBlock {
+    padding: 10px 0 10px 0;
+}
+
+.contact {
+    padding: 0 0 0 10px;
+}

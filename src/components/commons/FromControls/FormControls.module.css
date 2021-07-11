@@ -7,6 +7,11 @@
     color: red;
 }
 
+.error {
+    border: 3px solid red;
+    color: red;
+}
+
 .horizontalFlex {
     display: flex;
     align-items: center;
