@@ -8,7 +8,7 @@ import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
 import Friend from './components/Friends/Friend/Friend';
 import { Route } from 'react-router';
-import { HashRouter, withRouter } from 'react-router-dom';
+import { HashRouter, Redirect, Switch, withRouter } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { compose } from 'redux';
@@ -28,8 +28,17 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 const UsersContainer = React.lazy(() => import('./components/Users/UsersСontainer'));
 
 class App extends React.Component {
+  catchAllUnhandledErrors = (reason, promise) => {
+    alert("Some error occured");
+  }
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
 
   render() {
@@ -41,6 +50,8 @@ class App extends React.Component {
           <HeaderContainer />
           <Navbar />
           <div className='app-wrapper-content'>
+            <Switch>
+            <Route exact path='/' render={() => <Redirect to='profile'/>}/>
             <Route path='/profile/:userId?' render={ withSuspense(ProfileContainer)}/>
             <Route path='/dialogs' render={ withSuspense(DialogsContainer)}/>
             <Route path='/news' render={ () => <News/>}/>
@@ -52,6 +63,8 @@ class App extends React.Component {
             <Route path='/friend2' render={ () => <Friend id="2"/>} />
             <Route path='/friend3' render={ () => <Friend id="3"/>} />
             <Route path='/login' render={ () => <Login/>} />
+            <Route path='*' render={ () => <div>404 NOT FOUND</div>}/>
+            </Switch>
           </div>
         </div>
     )
